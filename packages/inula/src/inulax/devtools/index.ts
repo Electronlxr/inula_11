@@ -190,6 +190,11 @@ function getAffectedComponents() {
 
 // listens to messages from background
 window.addEventListener('message', (messageEvent?) => {
+
+  if (messageEvent?.origin !== window.location.origin) {
+    return;
+  }
+
   if (messageEvent?.data?.payload?.type === 'inulax request observed components') {
     // get observed components
     setTimeout(() => {
